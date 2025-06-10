@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+  <meta charset="UTF-8">
+  <title>中国红色旅游景区分布图</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script src="js/china.js"></script> <!-- 确保这个路径正确 -->
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="main" style="height: 100%"></div>
+
+  <script>
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var option = {
+      title: {
+        text: '中国红色旅游景区分布图',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+          if (params.value) {
+            return `${params.name}：${params.value} 个红色景区`;
+          } else {
+            return `${params.name}：无数据`;
+          }
+        }
+      },
+      visualMap: {
+        left: 'right',
+        min: 0,
+        max: 50,
+        text: ['多', '少'],
+        inRange: {
+          color: ['#ffe5e5', '#ff6666', '#990000']
+        },
+        calculable: true
+      },
+      series: [
+        {
+          name: '红色旅游景区数',
+          type: 'map',
+          map: 'china',
+          roam: true,
+          emphasis: {
+            label: {
+              show: true,
+              color: '#000',
+              fontWeight: 'bold'
+            },
+            itemStyle: {
+              areaColor: '#ffcc00'  // 鼠标点击后颜色
+            }
+          },
+          data: [
+            { name: '上海', value: 12 },
+            { name: '云南', value: 16 },
+            { name: '内蒙古', value: 15 },
+            { name: '北京', value: 17 },
+            { name: '吉林', value: 16 },
+            { name: '四川', value: 42 },
+            { name: '天津', value: 6 },
+            { name: '宁夏', value: 7 },
+            { name: '安徽', value: 33 },
+            { name: '山东', value: 25 },
+            { name: '山西', value: 30 },
+            { name: '广东', value: 15 },
+            { name: '广西', value: 15 },
+            { name: '新疆生产建设兵团', value: 7 },
+            { name: '新疆', value: 8 },
+            { name: '江苏', value: 26 },
+            { name: '江西', value: 44 },
+            { name: '河北', value: 32 },
+            { name: '河南', value: 22 },
+            { name: '浙江', value: 18 },
+            { name: '海南', value: 10 },
+            { name: '湖北', value: 33 },
+            { name: '湖南', value: 27 },
+            { name: '甘肃', value: 15 },
+            { name: '福建', value: 35 },
+            { name: '西藏', value: 5 },
+            { name: '贵州', value: 14 },
+            { name: '辽宁', value: 19 },
+            { name: '重庆', value: 11 },
+            { name: '陕西', value: 38 },
+            { name: '青海', value: 5 },
+            { name: '黑龙江', value: 23 }
+          ]
+        }
+      ]
+    };
+
+    myChart.setOption(option);
+  </script>
+</body>
+</html>
